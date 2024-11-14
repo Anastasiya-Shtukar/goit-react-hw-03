@@ -1,14 +1,10 @@
 import css from "./ContactForm.module.css";
 import { Formik, Form, Field } from "formik";
-import { useId } from "react";
+import { v4 as uuidv4 } from "uuid";
 import * as Yup from "yup";
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string()
-    .min(3, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  number: Yup.number()
     .min(3, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
@@ -17,7 +13,7 @@ const ContactSchema = Yup.object().shape({
 const ContactForm = ({ onAdd }) => {
   const handleSubmit = (values, actions) => {
     onAdd({
-      id: useId(),
+      id: uuidv4(),
       name: values.name,
       number: values.number,
     });
