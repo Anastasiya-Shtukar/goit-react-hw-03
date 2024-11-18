@@ -39,6 +39,8 @@ export function App() {
     });
   };
 
+  const contactName = contact.map((pers) => pers.name);
+
   const [filter, setFilter] = useState("");
 
   const filterContact = contact.filter((pers) =>
@@ -48,7 +50,7 @@ export function App() {
   return (
     <>
       <h1>Phonebook</h1>
-      <ContactForm onAdd={addContact} />
+      <ContactForm onAdd={addContact} name={contactName} />
       <SearchBox value={filter} onFilter={setFilter} />
       <ContactList Contacts={filterContact} onDelete={deleteContact} />
     </>

@@ -10,13 +10,18 @@ const ContactSchema = Yup.object().shape({
     .required("Required"),
 });
 
-const ContactForm = ({ onAdd }) => {
+const ContactForm = ({ onAdd, name }) => {
   const handleSubmit = (values, actions) => {
-    onAdd({
-      id: uuidv4(),
-      name: values.name,
-      number: values.number,
-    });
+    if (name.includes(values.name)) {
+      alert("Oops, looks like contact already exists");
+    } else {
+      onAdd({
+        id: uuidv4(),
+        name: values.name,
+        number: values.number,
+      });
+    }
+
     actions.resetForm();
   };
 
